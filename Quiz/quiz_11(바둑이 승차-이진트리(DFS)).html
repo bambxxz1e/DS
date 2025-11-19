@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>바둑이 승차 - 이진트리(DFS)</title>
+</head>
+<body>
+    <script>
+        function solution(c, arr){ // c(최대 무게) / arr(바둑이 무게 배열)
+            let answer = Number.MIN_SAFE_INTEGER;
+			let n = arr.length;
+
+			function DFS(L, sum){
+				if(sum > c) return;
+				if(L === n){
+					answer = Math.max(answer, sum);
+				}
+				else{
+					DFS(L + 1, sum + arr[L]); // 왼쪽 자식(포함한다)
+					DFS(L + 1, sum); // 오른쪽 자식
+				}
+			}
+			DFS(0, 0);
+
+            return answer;
+        }
+
+		let arr = [81, 58, 42, 33, 61];
+        console.log(solution(259, arr));
+    </script>
+</body>
+</html>
+
+<!-- 내 풀이
+ function solution(c, arr){ // c(최대 무게) / arr(바둑이 무게 배열)
+    let answer = 0;
+	let ch = Array.from({length: arr.length + 1}, () => 0); // 1번방부터 넣으니까 길이는 +1, 각 방에 0으로 초기화
+
+	function DFS(v){
+		if(v === (arr.length + 1)){ // 기저조건
+			let temp = 0;
+					
+			for(let i = 1; i <= arr.length; i++){
+				if(ch[i] === 1) temp += arr[i - 1];
+			}
+
+				if(temp > answer && temp <= c) answer = temp;
+		}
+		else{
+			ch[v] = 1;
+			DFS(v + 1);
+
+			ch[v] = 0;
+			DFS(v + 1);
+		}
+	}
+	DFS(1);
+
+	return answer;
+} -->

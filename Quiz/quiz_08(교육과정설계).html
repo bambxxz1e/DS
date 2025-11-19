@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>교육과정설계</title>
+</head>
+<body>
+    <script>
+        function solution(need, plan){
+            let answer = "YES";
+			let queue = need.split('');
+			
+			for(let x of plan){
+				if(queue.includes(x)){
+					if(x !== queue.shift()) return answer = "NO";
+				}
+			}
+
+			if(queue.length > 0) answer = "NO";
+
+            return answer;
+        }
+
+		let a = "CBA";
+		let b = "CDBGE" //"CADBGE"//"CBDAGE";
+        console.log(solution(a, b));
+    </script>
+</body>
+</html>

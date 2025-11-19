@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>우선탐색</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = "";
+        let queue = [];
+
+        queue.push(1);
+
+        while (queue.length) {
+          let v = queue.shift();
+          answer += v + " ";
+
+          for (let nv of [v * 2, v * 2 + 1]) {
+            if (nv > 7) continue;
+            queue.push(nv);
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [
+        [0, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+      ];
+
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String(내장 함수)</title>
+</head>
+
+<body>
+    <script>
+        // length : 문자열의 길이를 리턴
+        var text = "ABCDEFGHIJKLM";
+        console.log(text.length);
+
+        // indexOf : 문자열의 인덱스 위치를 찾아줌, 없으면 -1 리턴
+        var str = "Please locate where `locate`";
+        console.log(str.indexOf("locate"));
+
+        var find = "locate";
+        if(str.indexOf(find) > -1) {
+            console.log(find + " 문자 발견");
+        }
+        else {
+            cosole.log(find + " 문자 미발견");
+        }
+
+        // lastIndexOf() : 문자열 뒤에서부터 검색
+        console.log(str.lastIndexOf("locate"));
+
+        // search
+        // search = indexOf이지만 search는 뒤에서부터 안찾음 (무조건 앞에서부터)
+        console.log(str.search("locate"));
+
+        // slice(a, b) : 문자열의 일부만 추출해주는 내장 함수 (a부터 b-1 인덱스까지)
+        var str = "Apple, Banana, Kiwi";
+        console.log(str.slice(7, 13));
+        console.log(str.slice(7));
+        console.log(str.slice(-12, -6)); // -를 붙이면 맨 끝 문자열부터 -1
+
+        // substring(a, b) : 문자열의 일부만 추출해주는 내장 함수 (a부터 b-1 인덱스까지)
+        console.log(str.substring(7, 13));
+        console.log(str.substring(7));
+
+        // substr(a, b) : 몇 글자를 가져올지 아는 경우 사용할 때 유용 (a부터 글자 b개 추출)
+        console.log(str.substr(7,6));
+
+        var jumin1 = "070828";
+        console.log(jumin1.substr(0, 2));
+        console.log(jumin1.substr(2, 2));
+        console.log(jumin1.substr(4, 2));
+
+        var jumin2 = "2007-08-28";
+        var jumin2 = "07-08-28";
+        console.log(jumin2.substring(0, jumin2.indexOf("-")));
+
+        // replace
+        var str1 = "please visit here";
+        var str2 = str1.replace("here", "there"); // 첫번째 하나만 바뀜
+        console.log(str2);
+
+        var str3 = "please visit here here here";
+        var str4 = str3.replaceAll("here", "there"); // replaceAll (다 there로 바꾸고 싶으면..)
+        console.log(str4);
+
+        // 정규 표현식 이용
+        var str5 = "please visit here here here";
+        var str6 = str5.replace(/here/g, "there"); // g : global(전체)을 의미 (replaceAll)
+        console.log(str6);
+
+        var str7 = "Please visit Here HERE HeRe here";
+        var str8 = str7.replace(/here/gi, "there"); // i : ignore(무시)를 의미 (대소문자 무시)
+        console.log(str8);
+
+        // toUpperCase() : 대문자로 변환
+        var str9 = "Please visit here HERE Here";
+        console.log(str9.toUpperCase());
+
+        // toLowerCase() : 소문자로 변환
+        console.log(str9.toLocaleLowerCase());
+
+        // john을 검색 : toUpperCase(), toLowerCase()로 통일해서 검색
+        // 데이터베이스 : JOHN, John, john
+
+        // concat : 문자열 두 개를 하나로 합칠 때
+        var txt1 = "Hello";
+        var txt2 = "World";
+        var txt3 = txt1 + " " + txt2;
+
+        console.log(txt1.concat(txt2));
+        console.log(txt1.concat(" ", txt2));
+        console.log(txt1.concat(" ", "Hong", " ", "Gildong", txt2));
+
+        console.log(txt3);
+
+        // trim
+        var str10 = "           Hello           World           ";
+        console.log(str10);
+        console.log(str10.trim());
+
+        // padStart : 문자열의 앞 부분을 특정 길이로 채우는 함수
+        var str11 = "5";
+        var str11 = "5115";
+        console.log(str11.padStart(8, 0)); // 전체를 8글자로 만들되, 빈자리는 0으로 
+
+        // 특정 자릿수를 통일하기 위해서 사용 (날짜 등)
+        var str12 = "5";
+        var str12 = "05";
+        console.log(str12.padStart(2, 0));
+
+        // padEnd : 문자열의 뒤 부분을 특정 길이로 채우는 함수
+        var str13 = "15";
+        console.log(str13.padEnd(8, 0));
+
+        // charAt
+        var str14 = "Hello world";
+        console.log(str14.charAt(1));
+
+        // split, join
+        var tags ="키보드,기계식,블루투스";
+        var arr1 = tags.split(","); // ,을 기준으로 배열에 저장
+        console.log(arr1);
+        console.log(arr1.join(", ")) // 배열을 ,로 이어붙여서 문자열로 반환
+
+        var birthday = "2007-08-28";
+        var arr2 = birthday.split("-");
+        console.log(arr2);
+        console.log(arr2.join("."));
+
+
+    </script>
+</body>
+
+</html>

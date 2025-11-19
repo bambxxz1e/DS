@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>정보올림피아드 - 이진트리(DFS)</title>
+</head>
+<body>
+    <script>
+        function solution(L, sum, time){ // L(제한시간)
+            let answer = Number.MIN_SAFE_INTEGER;
+			let n = time.length;
+
+			function DFS(l, total, score){
+				if(total > L) return;
+				if(l === n){
+					answer = Math.max(answer, score);
+				}
+				else{
+					DFS(l + 1, total + time[l], score + sum[l]); // 왼쪽 자식(포함한다)
+					DFS(l + 1, total, score); // 오른쪽 자식
+				}
+			}
+			DFS(0, 0, 0);
+
+            return answer;
+        }
+
+		let ps = [10, 25, 15, 6, 7]; // 문제당 점수
+		let pt = [5, 12, 8, 3, 4]; // 문제 풀이 시간
+        console.log(solution(20, ps, pt));
+    </script>
+</body>
+</html>

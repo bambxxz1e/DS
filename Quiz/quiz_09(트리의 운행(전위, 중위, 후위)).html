@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>트리의 운행(전위, 중위, 후위)</title>
+</head>
+<body>
+    <script>
+		function solution(v){
+			let answer = "";
+			
+			function traversal(v){
+				if(v > 7) return;
+
+				// preOrder
+				// console.log(v);
+				// traversal(v * 2);
+				// traversal(v * 2 + 1);
+
+				// inOrder
+				traversal(v * 2);
+				console.log(v);
+				traversal(v * 2 + 1);
+
+				// postOrder
+				// traversal(v * 2);
+				// traversal(v * 2 + 1);
+				// console.log(v);
+			}
+
+			traversal(v);
+			
+			return answer;
+        }
+
+		console.log(solution(1));
+    </script>
+</body>
+</html>
+
+<!-- <html>
+<head>
+    <title>트리의 운행(전위, 중위, 후위) - 트리 사용</title>
+</head>
+<body>
+    <script type="module">
+		import { BinaryTree } from "../binaryTree.mjs";
+
+		function solution(s){
+			let tree1 = new BinaryTree(s);
+			let tree2 = new BinaryTree(s + 1);
+			let tree3 = new BinaryTree(s + 2);
+			let tree4 = new BinaryTree(s + 3);
+			let tree5 = new BinaryTree(s + 4);
+			let tree6 = new BinaryTree(s + 5);
+			let tree7 = new BinaryTree(s + 6);
+
+			tree1.setLeftSubTree(tree2);
+			tree1.setRightSubTree(tree3);
+			tree2.setLeftSubTree(tree4);
+			tree2.setRightSubTree(tree5);
+			tree3.setLeftSubTree(tree6);
+			tree3.setRightSubTree(tree7);
+
+			console.log("전위 순회");
+			tree1.preOrderTraversal(tree1);
+
+			console.log("\n중위 순회");
+			tree1.inOrderTraversal(tree1);
+
+			console.log("\n후위 순회");
+			tree1.postOrderTraversal(tree1);
+        }
+
+        solution(1);
+    </script>
+</body>
+</html> -->
