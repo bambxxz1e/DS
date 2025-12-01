@@ -36,17 +36,17 @@ class Dijkstra {
       return null;
     } else {
       for (let city_name in unvisited_cities) {
-        shortest_path_table[city_name] = Infinity;
+        shortest_path_table[city_name] = { distance: Infinity, city: null };
       }
     }
 
-    shortest_path_table[start_city.name] = 0;
+    shortest_path_table[start_city.name].distance = 0;
 
     while (Object.keys(unvisited_cities).length > 0) {
       let closest_city_name = null;
 
       for (let city_name in unvisited_cities) {
-        if (closest_city_name === null || shortest_path_table[city_name] < shortest_path_table[closest_city_name]) {
+        if (closest_city_name === null || shortest_path_table[city_name].distance < shortest_path_table[closest_city_name].distance) {
           closest_city_name = city_name;
         }
       }
@@ -59,15 +59,28 @@ class Dijkstra {
           continue;
         }
 
-        let distance = shortest_path_table[closest_city_name] + visited_cities[closest_city_name].adjacent_cities[adjacent_cities_name];
+        let distance = shortest_path_table[closest_city_name].distance + visited_cities[closest_city_name].adjacent_cities[adjacent_cities_name];
 
-        if (shortest_path_table[adjacent_cities_name] > distance) {
-          shortest_path_table[adjacent_cities_name] = distance;
+        if (shortest_path_table[adjacent_cities_name].distance > distance) {
+          shortest_path_table[adjacent_cities_name].distance = distance;
+          shortest_path_table[adjacent_cities_name].city = visited_cities[closest_city_name];
         }
       }
     }
 
-    console.log(shortest_path_table);
+    let path_string = this.showShortestPathRecursive(end_city.name, shortest_path_table);
+    console.log(path_string);
+  }
+
+  showShortestPathRecursive(destination_city_name, shortest_path_table, path_string = '') {
+    if (shortest_path_table[destination_city_name].city === null) {
+      path_string += destination_city_name;
+      return path_string;
+    }
+
+    path_string = this.showShortestPathRecursive(shortest_path_table[destination_city_name].city.name, shortest_path_table, path_string);
+    path_string += ' ==> ' + destination_city_name;
+    return path_string;
   }
 }
 
